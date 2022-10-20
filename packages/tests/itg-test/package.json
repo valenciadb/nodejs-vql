@@ -5,8 +5,8 @@
   "homepage": "https://valenciadb.com",
   "preferGlobal": false,
   "type": "module",
+  "types": "src/index.test.ts",
   "main": "dist/esm/index.test.js",
-  "types": "dist/esm/index.test.d.ts",
   "module": "dist/esm/index.test.js",
   "files": [
     "dist/"
