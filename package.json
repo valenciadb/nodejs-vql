@@ -31,7 +31,9 @@
     "typescript": "^4.8.4"
   },
   "scripts": {
-    "clean": "npm run env -ws -- rm -rf node_modules/",
+    "clean": "npm run clean/dist && npm run clean/node_modules",
+    "clean/node_modules": "npm run env -ws --include-workspace-root -- rm -rf node_modules/",
+    "clean/dist": "npm run env -ws -- rm -rf dist/",
     "bootstrap": "npm run clean && npm i -ws",
     "lint": "npm run -ws lint",
     "build": "npm run -ws build",

@@ -4,8 +4,8 @@
   "description": "Test fixture to use with the ValenciaQL project.",
   "preferGlobal": false,
   "type": "module",
+  "types": "src/index.ts",
   "main": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
   "module": "dist/esm/index.js",
   "files": [
     "dist/"
