@@ -1,0 +1,113 @@
+spec: v1.0
+desc: Catalog for automating the project tasks.
+
+dataset:
+  - const: src
+    desc: The source dir.
+    value: $(workDir)/src
+  
+  - const: grammarSrc
+    desc: Dir where the ANTLR grammar is defined.
+    value: $(workDir)/grammar
+
+  - const: dist
+    desc: The dist dir.
+    value: dist/esm
+  
+  - const: docs
+    desc: The docs dir.
+    value: docs
+
+defaultJobName: default
+
+jobs:
+  - macro: default
+    desc: Build the project and run its unit tests.
+    steps:
+      - lint
+      - build
+      - test/unit
+  
+  - group: build
+    jobs:
+    - macro: build
+      desc: Build the project.
+      onError: finish
+      steps:
+        - fs.emptyDir $(dist)
+        - build/antlr
+        - build/ts
+    
+    - macro: build/antlr
+      desc: Build the ANTLR grammar.
+      onError: finish
+      steps:
+        - fs.emptyDir $(src)/antlr
+        - log: [exec, cd $(grammarSrc) && antlr4 -o $(src)/antlr Lexer.g4]
+        - log: [exec, cd $(grammarSrc) && antlr4 -no-listener -o $(src)/antlr Vql.g4]
+    
+    - macro: build/ts
+      desc: Build the TypeScript code.
+      onError: finish
+      local:
+        - const: queryParserPath
+          value: $(dist)/Parser.js
+
+        - const: antlr4ErrorPath
+          value: antlr4/error/index.js
+        
+        - const: newAntlr4ErrorPath
+          value: antlr4/src/antlr4/error/index.js
+      steps:
+        - [exec.log, npx tsc --project tsconfig.json]
+        - $content = file.read $(queryParserPath) utf8
+        - $content = text.replace $(content) $(antlr4ErrorPath) $(newAntlr4ErrorPath)
+        - file.write $(content) $(queryParserPath)
+  
+  - macro: lint
+    desc: Linter.
+    steps:
+      - [exec.log, npx eslint . --fix]
+  
+  - group: test
+    jobs:
+    - macro: test/unit
+      desc: Run the unit tests.
+      steps:
+        - [exec.log, npm t]
+    
+    - macro: test/itg
+      desc: Run the integration tests.
+      steps:
+        - [exec.log, npm run test/itg]
+    
+    - macro: tests
+      desc: Run all the tests.
+      steps:
+        - test/unit
+        - test/itg
+    
+    - macro: cov
+      desc: Run the unit tests with coverage.
+      steps:
+        - [exec.log, npm run cov]
+  
+  - group: docs
+    jobs:
+    - macro: docs
+      desc: Generates the API doc.
+      steps:
+        - fs.remove $(docs)
+        - [exec, npx typedoc]
+
+    - macro: docs/open
+      desc: Open the docs dir in the default browser.
+      steps:
+        - xdg.open $(docs)/index.html
+  
+  - macro: make
+    desc: Build, test and document the project.
+    steps:
+      - default
+      - docs
+  

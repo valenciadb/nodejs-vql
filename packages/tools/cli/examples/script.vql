@@ -1,0 +1,12 @@
+TABLE bands KEY(band)
+SET INTO bands(band: 'Editors', origin: 'England', year: 2002)
+SET INTO bands(band: 'Simple Minds', origin: 'Scotland', year: 1977)
+SET INTO bands(band: 'The National', origin: 'US', year: 1999)
+
+TABLE albums KEY(band, album)
+SET INTO albums(band: 'Editors', album: 'The Back Room', year: 2005)
+SET INTO albums(band: 'Editors', album: 'An End Has a Start', year: 2007)
+SET INTO albums(band: 'Simple Minds', album: 'New Gold Dream (81–82–83–84)', year: 1982)
+SET INTO albums(band: 'Simple Minds', album: 'Once Upon a Time', year: 1985)
+SET INTO albums(band: 'The National', album: 'Boxer', year: 2007)
+SET INTO albums(band: 'The National', album: 'High Violet', year: 2010)

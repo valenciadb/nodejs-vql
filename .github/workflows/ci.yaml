@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  runTests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    services:
+      redis:
+        image: redislabs/rejson
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
+    steps:
+      - uses: valenciadb/.github/.github/workflows/nodejs-ci.yaml@main

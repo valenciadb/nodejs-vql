@@ -1,0 +1,35 @@
+{
+  "name": "@vql/test-fixture",
+  "version": "0.0.0",
+  "description": "Test fixture to use with the ValenciaQL project.",
+  "preferGlobal": false,
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "author": {
+    "name": "Sia Codelabs",
+    "url": "https://siacodelabs.com",
+    "email": "hello@siacodelabs.com"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/valenciadb/nodejs-vql/issues",
+    "email": "bugs@valenciadb.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valenciadb/vql.git"
+  },
+  "dependencies": {
+    "@vql/model": "^0.0.0",
+    "@vql/pipeline": "^0.0.0"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
+    "lint": "eslint --fix"
+  }
+}

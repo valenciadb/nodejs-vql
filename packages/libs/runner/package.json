@@ -1,0 +1,44 @@
+{
+  "name": "@vql/runner",
+  "version": "0.0.0",
+  "description": "ValenciaQL runner lib.",
+  "homepage": "https://valenciadb.com",
+  "preferGlobal": false,
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "author": {
+    "name": "Sia Codelabs",
+    "email": "hello@siacodelabs.com",
+    "url": "https://siacodelabs.com"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/valenciadb/nodejs-vql/issues",
+    "email": "bugs@valenciadb.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valenciadb/nodejs-vql.git"
+  },
+  "dependencies": {
+    "@vql/connector": "^0.0.0",
+    "@vql/crypto": "^0.0.0",
+    "@vql/model": "^0.0.0",
+    "@vql/parser": "^0.0.0"
+  },
+  "devDependencies": {
+    "@vql/parser": "^0.0.0",
+    "@vql/test-fixture": "^0.0.0"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
+    "lint": "eslint --fix",
+    "test": "mocha --config .mocharc.yaml",
+    "cov": "c8 mocha --config .mocharc.yaml"
+  }
+}

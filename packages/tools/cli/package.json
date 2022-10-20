@@ -1,0 +1,45 @@
+{
+  "name": "@vql/cli",
+  "version": "0.0.0",
+  "description": "ValenciaQL command line interface.",
+  "homepage": "https://valenciadb.com",
+  "type": "module",
+  "main": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist/"
+  ],
+  "bin": {
+    "vql": "dist/esm/vql.js"
+  },
+  "author": {
+    "name": "Sia Codelabs",
+    "email": "hello@siacodelabs.com",
+    "url": "https://siacodelabs.com"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/valenciadb/nodejs-vql/issues",
+    "email": "bugs@valenciadb.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/valenciadb/nodejs-vql.git"
+  },
+  "dependencies": {
+    "@vql/core": "^0.0.0",
+    "@vql/fs": "^0.0.0",
+    "@vql/redis": "^0.0.0",
+    "@vql/sia": "^0.0.0",
+    "redis": "^4.3.1",
+    "yargs": "^17.6.0"
+  },
+  "devDependencies": {
+    "@types/yargs": "^17.0.13"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
+    "lint": "eslint --fix"
+  }
+}

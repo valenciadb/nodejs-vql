@@ -1,0 +1,12 @@
+{
+  "check-coverage": true,
+  "sourceMap": true,
+
+  "exclude": ["**/antlr/**/*.js", "**/*.test.js"],
+
+  "reporter": ["lcov", "text"],
+  "statements": 100,
+  "branches": 100,
+  "functions": 100,
+  "lines": 100
+}

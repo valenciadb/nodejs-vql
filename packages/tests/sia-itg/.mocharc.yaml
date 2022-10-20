@@ -1,0 +1,9 @@
+ui: tdd
+timeout: 20000
+
+node-option:
+  - no-warnings
+  - es-module-specifier-resolution=node
+
+spec:
+  - dist/esm/**/*.test.js
