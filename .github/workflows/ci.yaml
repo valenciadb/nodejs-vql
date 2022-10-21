@@ -5,15 +5,18 @@ on:
     
   push:
     branches:
-      - main
+      - "**"
 
 jobs:
   runUnitTests:
     uses: valenciadb/.github/.github/workflows/nodejs-ci.yaml@main
+    with:
+      setupAntlr4: true
 
   runIntegrationTests:
     name: Node.js ${{ matrix.node }} on $ ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    needs: runUnitTests
 
     strategy:
       matrix:
@@ -35,6 +38,9 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v3
       
+      - name: Set up Antlr4
+        uses: siacodelabs/setup-antlr4@v1
+      
       - name: Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
@@ -44,7 +50,7 @@ jobs:
         run: npm ci -ws --include-workspace-root
       
       - name: Build
-        run: npm run -ws build
+        run: npm run build
       
       - name: Run integration tests
-        run: npm run -ws test/itg --if-present
+        run: npm run test/itg
