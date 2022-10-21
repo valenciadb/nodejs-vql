@@ -41,7 +41,7 @@ jobs:
       - name: Set up Antlr4
         uses: siacodelabs/setup-antlr4@v2
         with:
-          antlr4-version: 4.9.4
+          antlr4-version: 4.11.1
       
       - name: Node.js ${{ matrix.node }}
         uses: actions/setup-node@v3
