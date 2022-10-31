@@ -16,7 +16,7 @@ jobs:
   integration-tests:
     name: Node.js ${{ matrix.node }} on $ ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    needs: runUnitTests
+    needs: unit-tests
 
     strategy:
       matrix:
