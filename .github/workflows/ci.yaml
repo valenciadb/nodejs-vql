@@ -8,12 +8,12 @@ on:
       - "**"
 
 jobs:
-  runUnitTests:
+  unit-tests:
     uses: valenciadb/.github/.github/workflows/nodejs-ci.yaml@main
     with:
-      setupAntlr4: true
+      setup-antlr4: true
 
-  runIntegrationTests:
+  integration-tests:
     name: Node.js ${{ matrix.node }} on $ ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     needs: runUnitTests
