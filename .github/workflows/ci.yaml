@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ matrix.node }}
       
       - name: Set up Gattuso
-        uses: akromio/setup-gattuso2v1
+        uses: akromio/setup-gattuso@v1
       
       - name: Set up Antlr4
         uses: siacodelabs/setup-antlr4@v2
