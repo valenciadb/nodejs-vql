@@ -32,14 +32,10 @@
     "@types/antlr4": "^4.11.2"
   },
   "scripts": {
-    "build": "npm run build/antlr && npm run build/src && npm run build/src/post",
-    "build/antlr": "rm -rf src/antlr && npm run build/antlr/lexer && npm run build/antlr/parser",
-    "build/antlr/lexer": "cd grammar && antlr4 -o ../src/antlr Lexer.g4",
-    "build/antlr/parser": "cd grammar && antlr4 -no-listener -o ../src/antlr Vql.g4",
-    "build/src": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "build/src/post": "sed -i 's/antlr4\\/error\\/index.js/antlr4\\/src\\/antlr4\\/error\\/index.js/' dist/esm/Parser.js",
-    "lint": "eslint --fix",
-    "test": "mocha --config .mocharc.yaml",
-    "cov": "c8 mocha --config .mocharc.yaml"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "lint": "gattuso r lint",
+    "test": "gattuso r test",
+    "cov": "gattuso r cov"
   }
 }

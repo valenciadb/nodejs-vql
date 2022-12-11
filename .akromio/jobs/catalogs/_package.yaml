@@ -24,6 +24,11 @@ jobs:
     onError: finish
     steps:
       - fs.emptyDir $(dist)
+      - compile
+  
+  - macro: compile
+    title: Compile the source code
+    steps:
       - [exec.log, npx tsc --project tsconfig.json]
   
   - macro: lint

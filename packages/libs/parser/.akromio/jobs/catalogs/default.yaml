@@ -1,3 +1,25 @@
 spec: v1.0
 desc: Catalog for automating the project tasks.
 extends: base:///_package.yaml
+
+jobs:
+  - macro: compile
+    desc: Compile the source code
+    steps:
+      - compile/antlr
+      - compile/src
+      - [exec.log, sed -i s/antlr4\/error\/index.js/antlr4\/src\/antlr4\/error\/index.js/ dist/esm/Parser.js]
+  
+  - macro: compile/antlr
+    desc: Compile Antlr4 code
+    tags: [hidden]
+    steps:
+      - fs.remove src/antlr
+      - [exec, cd grammar && antlr4 -o ../src/antlr Lexer.g4]
+      - [exec, cd grammar && antlr4 -no-listener -o ../src/antlr Vql.g4]
+
+  - macro: compile/src
+    desc: Compile source code
+    tags: [hidden]
+    steps:
+      - [exec.log, npx tsc --project tsconfig.json]
