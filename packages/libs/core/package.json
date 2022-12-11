@@ -39,6 +39,8 @@
     "build": "gattuso r build",
     "lint": "gattuso r lint",
     "test": "gattuso r test",
-    "cov": "gattuso r cov"
+    "cov": "gattuso r cov",
+    "make": "gattuso r make",
+    "docs": "gattuso r docs"
   }
 }

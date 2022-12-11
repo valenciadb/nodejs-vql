@@ -39,6 +39,8 @@
     "build": "npm run -ws build",
     "test": "npm run -ws test --if-present",
     "test/itg": "npm run -ws test/itg --if-present",
-    "cov": "npm run -ws cov --if-present"
+    "cov": "npm run -ws cov --if-present",
+    "make": "npm run -ws make --if-present",
+    "docs": "npm run -ws docs --if-present"
   }
 }
