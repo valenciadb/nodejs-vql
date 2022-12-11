@@ -29,9 +29,12 @@
     "@vql/crypto": "^0.0.0"
   },
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "lint": "eslint --fix",
-    "test": "mocha --config .mocharc.yaml",
-    "cov": "c8 mocha --config .mocharc.yaml"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "lint": "gattuso r lint",
+    "test": "gattuso r test",
+    "cov": "gattuso r cov",
+    "make": "gattuso r make",
+    "docs": "gattuso r docs"
   }
 }

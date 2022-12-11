@@ -135,12 +135,13 @@ export function createTableTests(connector: Connector): void {
           expected(out).toBe(ItemQueryResult).toHave({ok: true, value: undefined})
         })
       } else {
-        test("get items and found, non-empty list with the items must be returned", async () => {
+        test.only("get items and found, non-empty list with the items must be returned", async () => {
           // (1) arrange
           await db.q(model)
 
           // (2) get item
           const out = (await db.q("SELECT FROM albums WHERE &band", value)) as QueryResult
+          console.log(out)
           expected(out).toBe(ItemsQueryResult).toHave({ok: true})
           expected(out.value)
             .member("length")

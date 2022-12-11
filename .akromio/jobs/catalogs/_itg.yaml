@@ -1,0 +1,42 @@
+spec: v1.0
+desc: Reusable catalog for automating integration test package tasks.
+
+dataset:
+  - const: dist
+    desc: Directory where to save the dist code.
+    value: dist
+  
+  - const: docs
+    desc: Directory where to save the doc.
+    value: docs
+
+defaultJobName: default
+jobs:
+  - macro: default
+    title: Build and test the package
+    steps:
+      - lint
+      - build
+      - test
+  
+  - macro: build
+    title: Build the package
+    onError: finish
+    steps:
+      - fs.emptyDir $(dist)
+      - [exec.log, npx tsc --project tsconfig.json]
+  
+  - macro: lint
+    title: Analyze code statically
+    steps:
+      - [exec.log, npx eslint . --fix]
+  
+  - macro: test
+    title: Run integration tests
+    steps:
+      - [exec.log, npx mocha --config .mocharc.yaml]
+    
+  - macro: make
+    title: Build, test and document the package
+    steps:
+      - default

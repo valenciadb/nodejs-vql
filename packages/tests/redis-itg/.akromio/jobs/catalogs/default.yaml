@@ -1,98 +1,23 @@
 spec: v1.0
 desc: Catalog for automating the project tasks.
+extends: base:///_itg.yaml
 
 dataset:
-  - const: dist
-    desc: The dist dir.
-    value: dist
-  
-  - const: docs
-    desc: The docs dir.
-    value: docs
-  
   - const: redis
-    desc: The Redis data.
     value:
+      image: redislabs/rejson
+      container: vql-redis
       port: 6379
-      docker:
-        image: redislabs/rejson:latest
-        container: vql-redis
-        port: 6379
-
-defaultJobName: default
 
 jobs:
-  - macro: default
-    desc: Build the project and run its unit tests.
-    steps:
-      - lint
-      - build
-      - test/unit
-
-  - macro: build
-    desc: Build the project.
-    onError: finish
-    steps:
-      - fs.emptyDir $(dist)
-      - [exec.log, npx tsc --project tsconfig.json]
-  
-  - macro: lint
-    desc: Linter.
-    steps:
-      - [exec.log, npx eslint . --fix]
-  
-  - group: test
-    jobs:
-    - macro: test/unit
-      desc: Run the unit tests.
-      steps:
-        - [exec.log, npm t]
-    
-    - macro: cov
-      desc: Run the unit tests with coverage.
-      steps:
-        - [exec.log, npm run cov]
-  
-  - group: docs
-    jobs:
-    - macro: docs
-      desc: Generates the API doc.
-      steps:
-        - fs.remove $(docs)
-        - [exec, npx typedoc]
-
-    - macro: docs/open
-      desc: Open the docs dir in the default browser.
-      steps:
-        - xdg.open $(docs)/index.html
-  
-  - macro: make
-    desc: Build, test and document the project.
-    steps:
-      - default
-      - docs
-  
   - group: redis
     jobs:
-      - macro: redis
-        desc: Jobs for starting the Redis container on Docker.
-        steps:
-          - redis/stop
-          - redis/run
-          - redis/ping
-      
-      - macro: redis/run
-        desc: Start the Redis container on Docker.
-        steps:
-          - [exec.log, docker run --name $(redis.docker.container) --publish $(redis.port):$(redis.docker.port) -d --rm $(redis.docker.image)]
-          - sleep 5s
-      
-      - macro: redis/ping
-        desc: Ping Redis.
-        steps:
-          - [exec.log, redis-cli PING]
-      
-      - macro: redis/stop
-        desc: Stop the Redis container on Docker if exists.
-        steps:
-          - [exec.log, docker stop $(redis.docker.container)]
+    - macro: redis/start
+      desc: Start the Redis container
+      steps:
+        - [exec.log, sudo docker run --name $(redis.container) --rm -d -p $(redis.port):6379 $(redis.image)]
+
+    - macro: redis/stop
+      desc: Stop the Redis container
+      steps:
+        - [exec.log, sudo docker stop $(redis.container)]

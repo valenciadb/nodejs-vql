@@ -31,15 +31,16 @@
     "@vql/core": "^0.0.0",
     "@vql/fs": "^0.0.0",
     "@vql/redis": "^0.0.0",
-    "@vql/sia": "^0.0.0",
-    "redis": "^4.3.1",
-    "yargs": "^17.6.0"
+    "redis": "^4.5.1",
+    "yargs": "^17.6.2"
   },
   "devDependencies": {
-    "@types/yargs": "^17.0.13"
+    "@types/yargs": "^17.0.17"
   },
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "lint": "eslint --fix"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "test": "gattuso r test",
+    "lint": "gattuso r lint"
   }
 }

@@ -1,0 +1,68 @@
+spec: v1.0
+desc: Reusable catalog for automating package tasks.
+
+dataset:
+  - const: dist
+    desc: Directory where to save the dist code.
+    value: dist
+  
+  - const: docs
+    desc: Directory where to save the doc.
+    value: docs
+
+defaultJobName: default
+jobs:
+  - macro: default
+    title: Build and test the package
+    steps:
+      - lint
+      - build
+      - test
+  
+  - macro: build
+    title: Build the package
+    onError: finish
+    steps:
+      - fs.emptyDir $(dist)
+      - compile
+  
+  - macro: compile
+    title: Compile the source code
+    steps:
+      - [exec.log, npx tsc --project tsconfig.json]
+  
+  - macro: lint
+    title: Analyze code statically
+    steps:
+      - [exec.log, npx eslint . --fix]
+  
+  - group: test
+    jobs:
+    - macro: test
+      title: Run unit tests
+      steps:
+        - [exec.log, npx mocha --config .mocharc.yaml]
+    
+    - macro: cov
+      title: Run unit tests with code coverage
+      steps:
+        - [exec.log, npx c8 mocha --config .mocharc.yaml]
+  
+  - group: docs
+    jobs:
+    - macro: docs
+      title: Generate the API doc
+      steps:
+        - fs.remove $(docs)
+        - [exec, npx typedoc]
+
+    - macro: docs/open
+      title: Open the docs dir in the default browser
+      steps:
+        - xdg.open $(docs)/index.html
+  
+  - macro: make
+    title: Build, test and document the package
+    steps:
+      - default
+      - docs
