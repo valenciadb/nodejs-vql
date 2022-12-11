@@ -31,7 +31,6 @@
   },
   "scripts": {
     "build": "gattuso r build",
-    "lint": "gattuso r lint",
-    "test/itg": "gattuso r test"
+    "lint": "gattuso r lint"
   }
 }

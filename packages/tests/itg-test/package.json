@@ -33,6 +33,6 @@
     "default": "gattuso r",
     "build": "gattuso r build",
     "lint": "gattuso r lint",
-    "test": "gattuso r test/unit"
+    "test": "gattuso r test"
   }
 }
