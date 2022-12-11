@@ -9,9 +9,37 @@ on:
 
 jobs:
   unit-tests:
-    uses: valenciadb/.github/.github/workflows/nodejs-ci.yaml@main
-    with:
-      setup-antlr4: true
+    name: Node.js ${{ matrix.node }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node: [18.x]
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      
+      - name: Set up Gattuso
+        uses: akromio/setup-gattuso2v1
+      
+      - name: Set up Antlr4
+        uses: siacodelabs/setup-antlr4@v2
+      
+      - name: Install dependencies
+        run: npm ci -ws --include-workspace-root
+
+      - name: Build
+        run: npm run build
+     
+      - name: Run unit tests
+        run: npm run cov
 
   integration-tests:
     name: Node.js ${{ matrix.node }} on $ ${{ matrix.os }}
