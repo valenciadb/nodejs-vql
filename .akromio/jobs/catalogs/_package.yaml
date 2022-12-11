@@ -15,6 +15,7 @@ jobs:
   - macro: default
     title: Build and test the package
     steps:
+      - lint
       - build
       - test
   
@@ -22,7 +23,6 @@ jobs:
     title: Build the package
     onError: finish
     steps:
-      - lint
       - fs.emptyDir $(dist)
       - [exec.log, npx tsc --project tsconfig.json]
   
