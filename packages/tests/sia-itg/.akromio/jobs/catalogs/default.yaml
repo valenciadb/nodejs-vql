@@ -1,3 +1,0 @@
-spec: v1.0
-desc: Catalog for automating the project tasks.
-extends: base:///_itg.yaml
