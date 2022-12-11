@@ -65,8 +65,13 @@ export default class SiaFileConnector extends SiaConnector {
         item = {value: await table.decoder.decode(data.toString())}
       }
     } catch (e) {
-      /* c8 ignore next 3 */
-      if (!(e instanceof Error && e.message.includes("status code 404"))) {
+      /* c8 ignore next 8 */
+      if (
+        !(
+          e instanceof Error &&
+          (e.message.includes("status code 404") || e.message.includes("status code 401"))
+        )
+      ) {
         throw e
       }
     }

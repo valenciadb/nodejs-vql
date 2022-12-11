@@ -5,7 +5,7 @@ declare module "@skynetlabs/skynet-nodejs" {
   export const defaultPortalUrl: string
 
   export class SkynetClient {
-    constructor(portal: string)
+    constructor(portal: string, options: {skynetApiKey: string})
 
     downloadData(skylink: string, customOptions?: any): Promise<any>
     getMetadata(skylinkUrl: string, customOptions?: any): Promise<any>

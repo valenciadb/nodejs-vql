@@ -10,7 +10,8 @@ suite(import.meta.url, () => {
   const portal = "https://web3portal.com"
   const options: SiaFileConnectorOptions = {
     portal,
-    baseSkylink: "00074tvo4m36s28cutu5jk6rjhfoh6vijlb6kn2j163v5a1qn4k13io"
+    baseSkylink: "AAB-Z5RcNJn454tmaw-VI9l7-bs9d6obXOzJuVgeM5ZnEQ",
+    apiKey: "99FU0HQQ8NE54OCS6C8I0C3NQJG5JITEIG1QJESJUCBKUV44FR1G"
   }
 
   const {table} = bands

@@ -5,9 +5,14 @@ import {ConnectorOptions} from "@vql/connector"
  */
 type SiaConnectorOptions = ConnectorOptions & {
   /**
-   * The URL to the Skynet portal.
+   * URL to the Skynet portal.
    */
   portal: string
+
+  /**
+   * API key to use.
+   */
+  apiKey: string
 }
 
 export default SiaConnectorOptions

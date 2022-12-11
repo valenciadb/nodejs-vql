@@ -30,11 +30,16 @@ export default class LfsShell extends Shell {
       type: "string",
       desc: "Skynet portal to use.",
       default: "https://siasky.net"
+    },
+
+    apiKey: {
+      type: "string",
+      desc: "Skynet API key."
     }
   }
 
   /** @override */
-  protected createConnector({portal, baseSkylink}: any): Promise<SiaFileConnector> {
-    return Promise.resolve(new SiaFileConnector("default", {portal, baseSkylink}))
+  protected createConnector({portal, baseSkylink, apiKey}: any): Promise<SiaFileConnector> {
+    return Promise.resolve(new SiaFileConnector("default", {portal, baseSkylink, apiKey}))
   }
 }

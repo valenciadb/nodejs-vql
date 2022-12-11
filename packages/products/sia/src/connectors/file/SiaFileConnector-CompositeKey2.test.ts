@@ -9,7 +9,8 @@ import SiaFileConnectorOptions from "./SiaFileConnectorOptions"
 suite(import.meta.url, () => {
   const portal = "https://web3portal.com"
   const baseSkylink = "00074tvo4m36s28cutu5jk6rjhfoh6vijlb6kn2j163v5a1qn4k13io"
-  const options: SiaFileConnectorOptions = {portal, baseSkylink}
+  const apiKey = "99FU0HQQ8NE54OCS6C8I0C3NQJG5JITEIG1QJESJUCBKUV44FR1G"
+  const options: SiaFileConnectorOptions = {portal, baseSkylink, apiKey}
 
   const {table} = albums
   const index = table.indexes.primary
