@@ -30,8 +30,9 @@
     "@vql/fs": "^0.0.0"
   },
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "lint": "eslint --fix",
-    "test/itg": "mocha --config .mocharc.yaml"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "lint": "gattuso r lint",
+    "test/itg": "gattuso r test/unit"
   }
 }

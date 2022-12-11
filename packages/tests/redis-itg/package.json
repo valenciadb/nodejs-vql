@@ -30,13 +30,14 @@
     "@vql/model": "^0.0.0",
     "@vql/redis": "^0.0.0",
     "@vql/test-fixture": "^0.0.0",
-    "redis": "^4.3.1"
+    "redis": "^4.5.1"
   },
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "lint": "eslint --fix",
-    "test/itg": "mocha --config .mocharc.yaml",
-    "redis/start": "sudo docker run --name vql-redis --rm -d -p 6379:6379 redislabs/rejson",
-    "redis/stop": "sudo docker stop vql-redis"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "lint": "gattuso r lint",
+    "test/itg": "gattuso r test",
+    "redis/start": "gattuso r redis/start",
+    "redis/stop": "gattuso r redis/stop"
   }
 }

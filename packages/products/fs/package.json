@@ -29,16 +29,17 @@
     "@vql/connector": "^0.0.0",
     "@vql/core": "^0.0.0",
     "@vql/model": "^0.0.0",
-    "fs-extra": "^10.1.0"
+    "fs-extra": "^11.1.0"
   },
   "devDependencies": {
     "@types/fs-extra": "^9.0.13",
     "@vql/test-fixture": "^0.0.0"
   },
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "lint": "eslint --fix",
-    "test": "mocha --config .mocharc.yaml",
-    "cov": "c8 mocha --config .mocharc.yaml"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "lint": "gattuso r lint",
+    "test": "gattuso r test/unit",
+    "cov": "gattuso r cov"
   }
 }

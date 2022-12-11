@@ -29,7 +29,8 @@
     "@vql/pipeline": "^0.0.0"
   },
   "scripts": {
-    "build": "rm -rf ./dist/ && tsc --project tsconfig.json",
-    "lint": "eslint --fix"
+    "default": "gattuso r",
+    "build": "gattuso r build",
+    "lint": "gattuso r lint"
   }
 }

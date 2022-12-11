@@ -29,7 +29,7 @@
     "antlr4": "^4.11.0"
   },
   "devDependencies": {
-    "@types/antlr4": "^4.7.3"
+    "@types/antlr4": "^4.11.2"
   },
   "scripts": {
     "build": "npm run build/antlr && npm run build/src && npm run build/src/post",
