@@ -24,17 +24,17 @@ jobs:
     onError: finish
     steps:
       - fs.emptyDir $(dist)
-      - [exec.log, npx tsc --project tsconfig.json]
+      - exec.log npx tsc --project tsconfig.json
   
   - macro: lint
     title: Analyze code statically
     steps:
-      - [exec.log, npx eslint . --fix]
+      - exec.log npx eslint . --fix
   
   - macro: test
     title: Run integration tests
     steps:
-      - [exec.log, npx mocha --config .mocharc.yaml]
+      - exec.log npx mocha --config .mocharc.yaml
     
   - macro: make
     title: Build, test and document the package
