@@ -29,24 +29,24 @@ jobs:
   - macro: compile
     title: Compile the source code
     steps:
-      - [exec.log, npx tsc --project tsconfig.json]
+      - exec.log npx tsc --project tsconfig.json
   
   - macro: lint
     title: Analyze code statically
     steps:
-      - [exec.log, npx eslint . --fix]
+      - exec.log npx eslint . --fix
   
   - group: test
     jobs:
     - macro: test
       title: Run unit tests
       steps:
-        - [exec.log, npx mocha --config .mocharc.yaml]
+        - exec.log npx mocha --config .mocharc.yaml
     
     - macro: cov
       title: Run unit tests with code coverage
       steps:
-        - [exec.log, npx c8 mocha --config .mocharc.yaml]
+        - exec.log npx c8 mocha --config .mocharc.yaml
   
   - group: docs
     jobs:
@@ -54,7 +54,7 @@ jobs:
       title: Generate the API doc
       steps:
         - fs.remove $(docs)
-        - [exec, npx typedoc]
+        - exec npx typedoc
 
     - macro: docs/open
       title: Open the docs dir in the default browser

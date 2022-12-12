@@ -2,7 +2,7 @@
 
 msg=$(cat $1)
 
-if [[ ! "$msg" =~ ^[a-z]+:.+ ]]; then
+if [[ ! "$msg" =~ ^[a-z\(\)-]+:.+ ]]; then
   echo "Commit messages must have the following format: 'type: title'."
   exit 1
 fi
