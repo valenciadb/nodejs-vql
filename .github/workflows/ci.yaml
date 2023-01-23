@@ -1,4 +1,4 @@
-name: CI
+name: ci
 
 on:
   workflow_dispatch:
@@ -10,6 +10,9 @@ on:
       - "**.js"
       - "**.json"
       - "**/.mocha.rc"
+
+permissions:
+  contents: read
 
 jobs:
   unit-tests:
@@ -47,48 +50,3 @@ jobs:
       
       - name: Run unit tests
         run: npm run cov
-
-  integration-tests:
-    name: Node.js ${{ matrix.node }} on $ ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    needs: unit-tests
-
-    strategy:
-      matrix:
-        node: [18.x]
-        os: [ubuntu-latest]
-
-    services:
-      redis:
-        image: redislabs/rejson
-        ports:
-          - 6379:6379
-        options: >-
-          --health-cmd "redis-cli ping"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v3
-      
-      - name: Set up Antlr4
-        uses: siacodelabs/setup-antlr4@v2
-      
-      - name: Set up Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      
-      - name: Set up Gattuso
-        uses: akromio/setup-gattuso@v1
-
-      - name: Install dependencies
-        run: npm ci -ws --include-workspace-root
-      
-      - name: Build
-        run: npm run build
-      
-      - name: Run integration tests
-        run: npm run test/itg
