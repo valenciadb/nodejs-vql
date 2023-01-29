@@ -14,7 +14,7 @@
   "devDependencies": {
     "@akromio/doubles": "^0.7.1",
     "@akromio/expected": "^0.7.0",
-    "@akromio/expected-fs": "^0.6.0",
+    "@akromio/expected-fs": "^0.7.0",
     "@akromio/peval": "^0.6.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.11.9",
