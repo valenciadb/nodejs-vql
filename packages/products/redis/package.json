@@ -29,7 +29,7 @@
     "@vql/connector": "^0.0.0",
     "@vql/core": "^0.0.0",
     "@vql/model": "^0.0.0",
-    "redis": "^4.5.1"
+    "redis": "^4.6.3"
   },
   "devDependencies": {
     "@vql/test-fixture": "^0.0.0"
