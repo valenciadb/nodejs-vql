@@ -17,7 +17,7 @@
     "@akromio/expected-fs": "^0.7.0",
     "@akromio/peval": "^0.7.0",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.11.9",
+    "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
     "@typescript-eslint/parser": "^5.46.0",
     "c8": "^7.12.0",
